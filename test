@@ -1,0 +1,35 @@
+```c++
+#include<bits/stdc++.h>
+using namespace std;
+int n,h;
+int A[100005];
+double ans;
+bool Check(double x){
+	int pos=1;
+	double res=0;
+	for(int i=1;i<=n;i++){
+		double mx=-1e18,sum=0;
+		for(int j=1;j<=h;j++){
+			sum+=A[pos++]-x;
+			mx=max(mx,sum);	
+		}
+		res+=mx;
+	}
+	return res>=0;
+}
+int main(){
+	scanf("%d%d",&n,&h);
+	for(int i=1;i<=n*h;i++){
+		scanf("%d",&A[i]);
+		ans=max(ans,1.0*A[i]);	
+	}
+	double l=0,r=ans,ans;
+	while(l+1e-5<r){
+		double mid=(l+r)/2;
+		if(Check(mid))l=mid,ans=mid;
+		else r=mid;	
+	}
+	printf("%.4f\n",ans);
+	return 0;
+}
+```
